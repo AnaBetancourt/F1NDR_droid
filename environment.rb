@@ -6,3 +6,4 @@ require_relative "./lib/character"
 require 'pry'
 require 'net/http'
 require 'json'
+require 'colorize'
