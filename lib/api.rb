@@ -1,5 +1,10 @@
 class API 
   
+  def self.get_lists
+    binding.pry
+  end 
+  
+  
   def self.get_films
     film_url = "https://swapi.dev/api/films/"
   end
