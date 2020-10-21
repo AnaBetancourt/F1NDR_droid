@@ -1,2 +1,2 @@
-# Finder Droid
-Hello! Welcome to Finder Droid, a CLI application for finding information on the original 6 Star Wars films and their prominent characters.
+# F1NDR Droid
+Hello! Welcome to F1NDR Droid, a CLI application for finding information on the original 6 Star Wars films and their prominent characters. As a play on the subject matter, this application is imagined as a droid named F1NDR whose purpose is to help you learn about Star Wars.
