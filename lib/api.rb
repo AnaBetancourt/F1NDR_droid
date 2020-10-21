@@ -29,6 +29,7 @@ class API
     end
 
   end 
+  
 
   
   # def self.make_character(link)
