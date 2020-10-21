@@ -1,3 +1,5 @@
+require 'pry' 
+
 class API  
 
   def self.get_films 
@@ -15,25 +17,28 @@ class API
       film.episode_id = film_hash["episode_id"]
       film.opening_crawl = film_hash["opening_crawl"]
       film.release_date = film_hash["release_date"]
+      # fim.characters = need to get an array of all the characters from the movie and return their names in a list of strings
+       
       characters_list = film_hash["characters"] 
-      
-      # ^- returns an array of links to character APIs
+        characters_list.each do |link| 
+          binding.pry
+          API.make_character(link)
+        end
+     
     end
 
   end 
 
   
-  def self.get_characters(url) 
-    url = "https://swapi.dev/api/people/" 
+  def self.make_character(link)
+    url = link 
     uri = URI(url) 
     response = Net::HTTP.get(uri) 
     hash = JSON.parse(response) 
-
     array_of_characters = hash["results"] 
     
     
     array_of_characters.each do |character_hash|
-      
       character = Character.new
       character.name = character_hash["name"]
       character.birth_year = character_hash["birth_year"]
