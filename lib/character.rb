@@ -3,8 +3,7 @@ class Character
 
   @@all = [] 
 
-  def initialize(name) 
-    @name = name 
+  def initialize
     @@all << self 
   end 
 

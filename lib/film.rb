@@ -3,8 +3,7 @@ class Film
 
   @@all = [] 
 
-  def initialize(title) 
-    @title = title 
+  def initialize 
     @@all << self 
   end 
 
