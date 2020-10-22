@@ -40,10 +40,12 @@ class CLI
     user_input = gets.strip.downcase 
      
     if user_input == "yes" || user_input == "y" 
-      puts "Which film number would you like the details of?".colorize(:light_blue) 
-      self.number_selection
+      puts "Which film number would you like the details of?".colorize(:light_blue)
+      number = gets.strip.to_i - 1  
+      @number = number 
 
       if !self.valid?(self.number) 
+        sleep(1)
         puts "I am terribly sorry, you have entered an invalid number. Allow me to bring you back to the beginning of my selection protocol.".colorize(:light_blue) 
         puts "" 
         self.ask_to_display_more_info 
@@ -54,11 +56,6 @@ class CLI
       end 
     end 
   end 
-  
-  def number_selection
-      number = gets.strip.to_i - 1  
-      @number = number 
-  end
 
 
   def valid?(num) 
@@ -96,20 +93,25 @@ class CLI
       puts "#{index}. ".colorize(:blue) + "#{film.title}".colorize(:yellow) 
       sleep(1) 
     end 
-    puts "Which film would you like information about now? Your previous selection was film number #{self.film_number + 1}.".colorize(:light_blue)
-    self.number_selection
+    puts "Which film would you like information about now? Your previous selection was film number #{self.number + 1}.".colorize(:light_blue)
+    new_selection = gets.strip.to_i - 1 
     
-    if !self.valid?(self.number) 
+    if self.valid?(new_selection)
+      @number = new_selection
+    end
+    
+    if !self.valid?(new_selection) 
+      sleep(1)
       puts "I am terribly sorry, you have entered an invalid number. Allow me to bring you back to the beginning of my secondary selection protocol.".colorize(:light_blue) 
       puts "" 
       self.display_info_again
     
     else  
-        self.display_details(self.number) 
-
+        self.display_details(new_selection) 
+        self.again?
+    end
   end 
 
 
-   
 
 end 
