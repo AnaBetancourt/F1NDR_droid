@@ -2,7 +2,7 @@ class CLI
   attr_accessor :number 
 
   def start   
-    puts "Hello! I am F1NDR, your personal Star Wars information finder. Allow me to gather all the information needed to assist you. This will take approximately one minute, I apologize...".colorize(:light_blue)
+    puts "Hello! I am F1NDR, your personal Star Wars information finder. Allow me to gather all the information needed to assist you. This will take approximately two minutes, I apologize...".colorize(:light_blue)
     puts ""  
     API.get_films 
     self.ask_if_service_is_needed 
@@ -105,7 +105,7 @@ class CLI
       puts "#{index}. ".colorize(:blue) + "#{film.title}".colorize(:yellow) 
       sleep(1) 
     end 
-    puts "Which film would you like information about now? Your previous selection was film number #{self.number + 1}.".colorize(:light_blue)
+    puts "Which film would you now like information about? Your previous selection was film number #{self.number + 1}.".colorize(:light_blue)
     new_selection = gets.strip.to_i - 1 
     
     if self.valid?(new_selection)
@@ -119,7 +119,7 @@ class CLI
       self.display_info_again
     
     else  
-        self.display_details(new_selection) 
+        self.display_details_film(new_selection) 
         self.ask_to_display_more_info_characters
     end
   end 
@@ -168,6 +168,7 @@ class CLI
       puts "#{film.title}".colorize(:blue)
       sleep(0.25)
     end
+    self.ask_to_display_more_info_characters
   end
 
 
