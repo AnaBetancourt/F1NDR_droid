@@ -15,7 +15,7 @@ class Character
   end 
   
   def self.find_by_name(name)
-    self.all.find{|character| character.name == name}
+    self.all.find{|character| character.name == name || character.name.downcase == name}
   end
   
   def add_film(film)

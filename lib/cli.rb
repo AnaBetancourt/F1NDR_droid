@@ -54,18 +54,21 @@ class CLI
   
   
   def list_the_charaters
-    Character.all.each{|character| puts "#{character.name}".colorize(:yellow) sleep(1)}
+    Character.all.each do |character| 
+      puts "#{character.name}".colorize(:yellow) 
+      sleep(0.25)
+    end
     self.ask_to_display_more_info
   end
   
   
   def ask_to_display_more_info
     puts ""
-    puts "Would you like to learn more information about any character? Please type" + " 'y'".colorize(:light_green) + " or".colorize(:light_blue) + " 'yes'".colorize(:light_green) + " to learn more and".colorize(:light_blue) + " 'n'".colorize(:light_green) + "or".colorize(:light_blue) + " 'no'".colorize(:light_green) + " if not.".colorize(:light_blue)
+    puts "Would you like to learn more information about any character? Please type".colorize(:light_blue) + " 'y'".colorize(:light_green) + " or".colorize(:light_blue) + " 'yes'".colorize(:light_green) + " to learn more and".colorize(:light_blue) + " 'n'".colorize(:light_green) + "or".colorize(:light_blue) + " 'no'".colorize(:light_green) + " if not.".colorize(:light_blue)
     user_input = gets.strip.downcase
     
     if user_input == "no" || user_input == "n"
-      self.
+      
     
     elsif user_input == "yes" || user_input == "y"
       self.display_info_characters
@@ -74,15 +77,18 @@ class CLI
   end
   
   def display_info_characters
-    puts "Please type the name of the character you'd like more information about"
+    puts "Please type the name of the character you'd like more information about.".colorize(:light_blue)
     character_name = gets.strip.downcase
+    puts "Searching for character...".colorize(:light_blue)
+    binding.pry
     
-    if !Character.all.find_by_name(character_name)
-      puts "You have not entered a valid name."
+    if !Character.find_by_name(character_name)
+      puts "You have not entered a valid name. Please try again.".colorize(:light_blue)
       self.display_info_characters
       
-    elsif Character.all.find_by_name(character_name)
-      self.display_details_character(character_name)
+    elsif Character.find_by_name(character_name)
+      character = Character.find_by_name(character_name)
+      self.display_details_character(character)
       
     end
   end
