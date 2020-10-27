@@ -96,10 +96,14 @@ class CLI
     puts "Name: #{character.name}".colorize(:yellow) 
     sleep(1) 
     puts "Birth Year: #{character.birth_year}".colorize(:yellow) 
-    # sleep(1) 
-    # puts "Home Planet: #{character.home_planet}".colorize(:yellow) 
-    # sleep(1) 
-    # puts "Films: #{character.films}".colorize(:yellow)
+    sleep(1) 
+    puts "Home Planet: #{character.home_planet}".colorize(:yellow) 
+    sleep(1) 
+    puts "Films: ".colorize(:yellow)
+    character.films.each do |film|
+      puts "#{film.name}"
+      sleep(0.25)
+    end
   end
   
 
