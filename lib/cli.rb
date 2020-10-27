@@ -65,6 +65,7 @@ class CLI
 
   def display_details(selected_film) 
     film = Film.all[selected_film] 
+    # binding.pry
     puts "Title: #{film.title}".colorize(:yellow) 
     sleep(1) 
     puts "Episode ID: #{film.episode_id}".colorize(:yellow) 
@@ -72,6 +73,13 @@ class CLI
     puts "Release Date: #{film.release_date}".colorize(:yellow) 
     sleep(1) 
     puts "Opening Crawl: #{film.opening_crawl}".colorize(:yellow) 
+    sleep(1)
+    puts "Characters: ".colorize(:yellow)
+    sleep(0.25)
+    film.characters.each do |character|
+      puts "#{character.name}"
+      sleep(0.25)
+    end
   end 
   
   def again?

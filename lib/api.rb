@@ -24,7 +24,6 @@ class API
         API.make_character(new_link, film) 
       end 
     end
-    binding.pry
   end  
 
 
