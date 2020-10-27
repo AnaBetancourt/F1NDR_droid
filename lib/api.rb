@@ -24,7 +24,7 @@ class API
         API.make_character(new_link, film) 
       end 
     end
-    # binding.pry
+    binding.pry
   end  
 
 
@@ -38,15 +38,12 @@ class API
     
     if !Character.find_by_name(character_hash["name"])
       character = Character.new(character_hash["name"], film)
-      # character.name = character_hash["name"] 
       character.birth_year = character_hash["birth_year"] 
-      character.films = []
-      # character.films << film
       # character.home_planet = character_hash["homeworld"] <- returns a link to the home world's api 
-      # character.films = character_hash["films"] <- returns an array of links to film apis 
       
-    elsif Character.find_by_name(character_hash["name"])
-      binding.pry
+    else 
+      character = Character.find_by_name(character_hash["name"])
+      character.add_film(film)
     end
   end  
 

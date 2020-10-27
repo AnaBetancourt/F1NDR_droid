@@ -19,7 +19,6 @@ class Character
   end
   
   def add_film(film)
-    # binding.pry
     film.characters << self
     @films << film 
   end
