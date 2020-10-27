@@ -1,5 +1,6 @@
 class Character 
-  attr_accessor :name, :birth_year, :home_planet, :films 
+  attr_accessor :name, :birth_year, :home_planet
+  attr_reader :films
 
   @@all = [] 
 
@@ -10,7 +11,10 @@ class Character
   def self.all 
     @@all 
   end 
-
+  
+  def self.find_by_name(name)
+    self.all.find{|character| character.name == name}
+  end
    
 
 end
