@@ -12,10 +12,5 @@ class Film
     @@all 
   end 
   
-  def add_character(character)
-    character.films = self unless character.films == self
-    @characters << character unless @characters.include?(character)
-  end
-
   
 end 
