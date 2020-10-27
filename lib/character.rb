@@ -3,8 +3,11 @@ class Character
 
   @@all = [] 
 
-  def initialize
+  def initialize(name, film)
+    @name = name 
     @@all << self 
+    @films = []
+    add_film(film)
   end 
 
   def self.all 
@@ -15,6 +18,11 @@ class Character
     self.all.find{|character| character.name == name}
   end
   
+  def add_film(film)
+    # binding.pry
+    film.characters << self
+    @films << film 
+  end
    
 
 end

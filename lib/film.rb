@@ -3,7 +3,7 @@ class Film
 
   @@all = [] 
 
-  def initialize 
+  def initialize
     @@all << self
     @characters = []
   end 
