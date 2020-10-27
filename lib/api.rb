@@ -15,21 +15,20 @@ class API
       film.episode_id = film_hash["episode_id"] 
       film.opening_crawl = film_hash["opening_crawl"] 
       film.release_date = film_hash["release_date"] 
-      # film.characters =  
 
       characters_list = film_hash["characters"]  
       characters_list.each do |link|
         split_link = link.split("") 
         https = split_link.insert(4, "s") 
         new_link = https.join 
-        API.make_character(new_link) 
+        API.make_character(new_link, film) 
       end 
     end
     binding.pry
   end  
 
 
-  def self.make_character(link) 
+  def self.make_character(link, film) 
     url = link 
     uri = URI(url)  
     response = Net::HTTP.get(uri)  
@@ -41,6 +40,8 @@ class API
       character = Character.new
       character.name = character_hash["name"] 
       character.birth_year = character_hash["birth_year"] 
+      character.films = []
+      character.films << film
       # character.home_planet = character_hash["homeworld"] <- returns a link to the home world's api 
       # character.films = character_hash["films"] <- returns an array of links to film apis 
     end

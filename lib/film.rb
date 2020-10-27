@@ -4,20 +4,17 @@ class Film
   @@all = [] 
 
   def initialize 
-    @@all << self 
-    @character_list = []
+    @@all << self
+    @characters = []
   end 
 
   def self.all 
     @@all 
   end 
   
-  def self.find_by_title(film_title)
-    self.all.select{|film| film.title == film_title}
-  end
-  
-  def list_of_characters
-    @character_list
+  def add_character(character)
+    character.films = self unless character.films == self
+    @characters << character unless @characters.include?(character)
   end
 
   
