@@ -80,7 +80,6 @@ class CLI
     puts "Please type the name of the character you'd like more information about.".colorize(:light_blue)
     character_name = gets.strip.downcase
     puts "Searching for character...".colorize(:light_blue)
-    binding.pry
     
     if !Character.find_by_name(character_name)
       puts "You have not entered a valid name. Please try again.".colorize(:light_blue)
@@ -89,13 +88,11 @@ class CLI
     elsif Character.find_by_name(character_name)
       character = Character.find_by_name(character_name)
       self.display_details_character(character)
-      
     end
   end
   
   
-  def display_details_character(character_name) 
-    character = Character.all[character_name] 
+  def display_details_character(character) 
     puts "Name: #{character.name}".colorize(:yellow) 
     sleep(1) 
     puts "Birth Year: #{character.birth_year}".colorize(:yellow) 

@@ -24,6 +24,7 @@ class API
         API.make_character(new_link, film) 
       end 
     end
+    binding.pry
   end  
 
 
@@ -32,18 +33,33 @@ class API
     uri = URI(url)  
     response = Net::HTTP.get(uri)  
     character_hash = JSON.parse(response)  
-    # binding.pry
 
     
     if !Character.find_by_name(character_hash["name"])
       character = Character.new(character_hash["name"], film)
       character.birth_year = character_hash["birth_year"] 
-      # character.home_planet = character_hash["homeworld"] <- returns a link to the home world's api 
+      
+      home_link = character_hash["homeworld"]
+      split_link = home_link.split("") 
+      https = split_link.insert(4, "s") 
+      homeworld = https.join 
+      API.get_homeworld(homeworld)
+      character.home_planet = API.get_homeworld(homeworld)
       
     else 
       character = Character.find_by_name(character_hash["name"])
       character.add_film(film)
     end
   end  
+  
+  def self.get_homeworld(homeworld)
+    url = homeworld 
+    uri = URI(url)  
+    response = Net::HTTP.get(uri)  
+    homeworld_hash = JSON.parse(response)
+    
+    planet_name = homeworld_hash["name"]
+    planet_name
+  end
 
 end 
