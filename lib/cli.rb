@@ -5,7 +5,7 @@ class CLI
     puts "Hello! I am F1NDR, your personal Star Wars information finder. Allow me to gather all the information needed to assist you. This will take approximately two minutes, I apologize...".colorize(:light_blue)
     puts ""  
     API.get_films 
-    self.ask_if_service_is_needed 
+    ask_if_service_is_needed 
   end  
 
 
@@ -14,7 +14,7 @@ class CLI
     user_input = gets.strip.downcase  
 
     if user_input == "yes" || user_input == "y" 
-      self.list_films
+      list_films
 
     else  
       puts "Goodbye!".colorize(:light_blue) 
@@ -25,7 +25,7 @@ class CLI
   def list_films
       puts "Allow me to display you a list of the films. One moment while I fetch them for you...".colorize(:light_blue) 
       sleep(2) 
-      self.list_the_films
+      list_the_films
   end
   
 
@@ -34,7 +34,7 @@ class CLI
       puts "#{index}. ".colorize(:blue) + "#{film.title}".colorize(:yellow) 
       sleep(1) 
     end 
-    self.display_more_info_films
+    display_more_info_films
   end 
   
 
@@ -49,15 +49,15 @@ class CLI
       number = gets.strip.to_i - 1  
       @number = number 
 
-      if !self.valid?(self.number) 
+      if !valid?(@number) 
         sleep(1)
         puts "I am terribly sorry, you have entered an invalid number. Allow me to bring you back to the beginning of my selection protocol.".colorize(:light_blue) 
         puts "" 
-        self.display_more_info_films 
+        display_more_info_films 
 
       else  
-        self.display_details_film(self.number) 
-        self.ask_to_display_more_info_characters
+        display_details_film(@number) 
+        ask_to_display_more_info_characters
       end 
     end 
   end 
@@ -86,13 +86,14 @@ class CLI
     end
   end 
   
+  
   def again?
     puts "" 
     puts "Would you like information on another film? The answer prompts remain the same;".colorize(:light_blue) + " 'yes'".colorize(:light_green) + " or".colorize(:light_blue) + " 'y'".colorize(:light_green) + " to proceed and any other key to leave this program.".colorize(:light_blue)
     user_input = gets.strip.downcase 
          
     if user_input == "yes" || user_input == "y" 
-       self.display_info_again
+       display_info_again
 
     else  
       puts "Glad to have been of service, goodbye!".colorize(:light_blue) 
@@ -100,7 +101,7 @@ class CLI
   end
    
 
-  def display_info_again 
+  def display_info_again
     Film.all.each.with_index(1) do |film, index| 
       puts "#{index}. ".colorize(:blue) + "#{film.title}".colorize(:yellow) 
       sleep(1) 
@@ -108,51 +109,50 @@ class CLI
     puts "Which film would you now like information about? Your previous selection was film number #{self.number + 1}.".colorize(:light_blue)
     new_selection = gets.strip.to_i - 1 
     
-    if self.valid?(new_selection)
+    if valid?(new_selection)
       @number = new_selection
     end
     
-    if !self.valid?(new_selection) 
+    if !valid?(new_selection) 
       sleep(1)
       puts "I am terribly sorry, you have entered an invalid number. Allow me to bring you back to the beginning of my secondary selection protocol.".colorize(:light_blue) 
       puts "" 
-      self.display_info_again
+      display_info_again
     
     else  
-        self.display_details_film(new_selection) 
-        self.ask_to_display_more_info_characters
+        display_details_film(new_selection) 
+        ask_to_display_more_info_characters
     end
   end 
   
   
   def ask_to_display_more_info_characters
     puts ""
-    puts "Would you like to learn more information about any character? Please type".colorize(:light_blue) + " 'y'".colorize(:light_green) + " or".colorize(:light_blue) + " 'yes'".colorize(:light_green) + " to learn more and".colorize(:light_blue) + " 'n'".colorize(:light_green) + "or".colorize(:light_blue) + " 'no'".colorize(:light_green) + " if not.".colorize(:light_blue)
+    puts "Would you like to see more information about any character? Please type".colorize(:light_blue) + " 'y'".colorize(:light_green) + " or".colorize(:light_blue) + " 'yes'".colorize(:light_green) + " to learn more and".colorize(:light_blue) + " 'n'".colorize(:light_green) + "or".colorize(:light_blue) + " 'no'".colorize(:light_green) + " if not.".colorize(:light_blue)
     user_input = gets.strip.downcase
     
     if user_input == "no" || user_input == "n"
-      self.again?
+      again?
       
-    
     elsif user_input == "yes" || user_input == "y"
-      self.display_info_characters
-      
+      display_info_characters
     end
   end
+  
   
   def display_info_characters
     puts "Please type the name of the character you'd like more information about.".colorize(:light_blue)
     character_name = gets.strip.downcase
     puts "Searching for character...".colorize(:light_blue)
-    sleep(3)
+    sleep(2)
     
     if !Character.find_by_name(character_name)
       puts "You have not entered a valid character name. Allow me to bring you back to the beginning of my character selection protocol.".colorize(:light_blue)
-      self.display_info_characters
+      display_info_characters
       
     elsif Character.find_by_name(character_name)
       character = Character.find_by_name(character_name)
-      self.display_details_character(character)
+      display_details_character(character)
     end
   end
   
@@ -169,7 +169,7 @@ class CLI
       puts "#{film.title}".colorize(:blue)
       sleep(0.25)
     end
-    self.ask_to_display_more_info_characters
+    ask_to_display_more_info_characters
   end
 
 
