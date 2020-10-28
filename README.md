@@ -23,7 +23,7 @@ During execution of application, follow prompts and input the requested replies.
 
 ## Contributing 
 
-Pull requests and contributions welcome at https://github.com/AnaBetancourt/F1NDR_droid.git
+Pull requests and bug reports welcome at https://github.com/AnaBetancourt/F1NDR_droid.git
 
   
 ## License 
