@@ -24,7 +24,7 @@ class CLI
   
   def list_films
       puts "Allow me to display you a list of the films. One moment while I fetch them for you...".colorize(:light_blue) 
-      sleep(3) 
+      sleep(2) 
       self.list_the_films
   end
   
@@ -144,9 +144,10 @@ class CLI
     puts "Please type the name of the character you'd like more information about.".colorize(:light_blue)
     character_name = gets.strip.downcase
     puts "Searching for character...".colorize(:light_blue)
+    sleep(3)
     
     if !Character.find_by_name(character_name)
-      puts "You have not entered a valid name. Please try again.".colorize(:light_blue)
+      puts "You have not entered a valid character name. Allow me to bring you back to the beginning of my character selection protocol.".colorize(:light_blue)
       self.display_info_characters
       
     elsif Character.find_by_name(character_name)
