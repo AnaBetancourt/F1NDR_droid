@@ -16,7 +16,7 @@ bundle install
 Begin running by inputting: 
 
 ``` 
-ruby bin/run 
+ruby ./bin/run 
 ``` 
 During execution of application, follow prompts and input the requested replies. After typing replies, hit 'enter' key to submit reply to the program. 
 
