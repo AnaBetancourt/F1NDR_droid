@@ -166,7 +166,7 @@ class CLI
     sleep(1) 
     puts "Films: ".colorize(:yellow)
     character.films.each do |film|
-      puts "#{film.title}".colorize(:blue)
+      puts "#{film.title}".colorize(:yellow)
       sleep(0.25)
     end
     ask_to_display_more_info_characters
