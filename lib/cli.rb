@@ -2,7 +2,7 @@ class CLI
   attr_accessor :number 
 
   def start   
-    puts "Hello! I am F1NDR, your personal Star Wars information finder. Allow me to gather all the information needed to assist you. This will take approximately two minutes, I apologize...".colorize(:light_blue)
+    puts "Hello! I am F1NDR, your personal Star Wars information finder. Allow me to gather all the information needed to assist you. This will take approximately two minutes, I apologize... information droids just aren't what they used to be a long time ago in a galaxy far, far away...".colorize(:light_blue)
     puts ""  
     API.get_films 
     ask_if_service_is_needed 
