@@ -136,6 +136,10 @@ class CLI
       
     elsif user_input == "yes" || user_input == "y"
       display_info_characters
+      
+    else 
+      "I am sorry but that was not one of your input options. Allow me to take you back to try again."
+      ask_to_display_more_info_characters
     end
   end
   
